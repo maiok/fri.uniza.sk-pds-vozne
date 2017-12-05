@@ -2,6 +2,7 @@ package database;
 
 import constants.AppConstants;
 import entities.Osoba;
+import entities.Zamestnanec;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -60,5 +61,33 @@ public class DBManager {
         return false;
     }
 
+    public boolean insertZamestnanec(Zamestnanec zam, Osoba osoba) {
+
+        if(osoba != null) {
+            insertOsoba(osoba);
+        }
+
+        query = "INSERT INTO \"Zamestnanec\" (\"rod_cislo\", \"id_spolocnosti\", \"datum_prijatia\", \"datum_prepustenia\") " +
+                "VALUES (?,?,?,?)";
+
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setString(1, (osoba!=null) ? osoba.getRodCislo() : null);
+//            ps.setInt(2, (spol!=null) ? spol.getIdSpolocnosti() : null);
+            ps.setDate(3, new Date(0));
+            ps.setDate(4, new Date(0));
+
+            int response = ps.executeUpdate();
+
+            if(response != 0) {
+                return true;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
 
 }

@@ -1,9 +1,11 @@
+import database.DBDataGenerator;
 import database.DBManager;
 import entities.Osoba;
 public class App {
 
     public static void main(String[] args) {
         DBManager manager = new DBManager();
+        DBDataGenerator dbDataGenerator = new DBDataGenerator(manager);
         manager.connect();
 
         Osoba os = new Osoba();

@@ -25,18 +25,13 @@ CREATE TABLE "Osoba"(
 ALTER TABLE "Osoba" ADD CONSTRAINT "Key1" PRIMARY KEY ("rod_cislo")
 /
 
--- Table and Columns comments section
-
-COMMENT ON COLUMN "Osoba"."rod_cislo" IS 'd'
-/
-
 -- Table Zamestnanec
 
 CREATE TABLE "Zamestnanec"(
   "id_zamestnanca" Integer NOT NULL,
   "rod_cislo" Char(11),
   "id_spolocnosti" Integer,
-  "datum_priatia" Date NOT NULL,
+  "datum_prijatia" Date NOT NULL,
   "datum_prepustenia" Date
 )
 /
