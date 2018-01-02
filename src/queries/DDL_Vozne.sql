@@ -259,7 +259,7 @@ ALTER TABLE Suciastka
 CREATE TABLE Typ_Suciastky (
   id_typu_suciastky INTEGER         NOT NULL,
   typ_suciastky     VARCHAR2(30),
-  historia_ceny     T_HISTORIA_CENY NOT NULL
+  historia_ceny     T_REC_HISTORIA_CENY NOT NULL
 )
 /
 

@@ -2,6 +2,9 @@ package tableModels;
 
 import javax.swing.table.AbstractTableModel;
 
+/**
+ * Trieda potrebna ako DataSource pre JTable v GUI
+ */
 public class OsobaTableModel extends AbstractTableModel {
 
     public OsobaTableModel() {
