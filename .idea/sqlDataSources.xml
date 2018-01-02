@@ -4,11 +4,11 @@
     <option name="dataSources">
       <list>
         <State>
-          <option name="id" value="db4fed18-7416-4244-86dc-cd98683f9dcd" />
+          <option name="id" value="a7b6faa1-6aad-448e-880d-2069f4b27977" />
           <option name="name" value="DDL_Vozne" />
           <option name="urls">
             <array>
-              <option value="file://$PROJECT_DIR$/src/migrations/DDL_Vozne.sql" />
+              <option value="file://$PROJECT_DIR$/src/queries/DDL_Vozne.sql" />
             </array>
           </option>
         </State>

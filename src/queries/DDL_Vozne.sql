@@ -308,8 +308,7 @@ CREATE TABLE Vozen_Stanica (
   id_vozna     INTEGER NOT NULL,
   id_stanice   INTEGER NOT NULL,
   v_stanici_od DATE    NOT NULL,
-  v_stanici_do DATE,
-  id_stanice   INTEGER NOT NULL
+  v_stanici_do DATE
 )
 /
 
@@ -369,107 +368,107 @@ CREATE INDEX IX_Relationship3
 -- Create foreign keys (relationships) section -------------------------------------------------
 
 ALTER TABLE Oprava_Suciastka
-  ADD CONSTRAINT FOREIGN KEY (id_opravy) REFERENCES Oprava (id_opravy)
+  ADD FOREIGN KEY (id_opravy) REFERENCES Oprava (id_opravy)
 /
 
 
 ALTER TABLE Kontrola_Zamestnanec
-  ADD CONSTRAINT FOREIGN KEY (id_zamestnanca) REFERENCES Zamestnanec (id_zamestnanca)
+  ADD FOREIGN KEY (id_zamestnanca) REFERENCES Zamestnanec (id_zamestnanca)
 /
 
 
 ALTER TABLE Kontrola_Zamestnanec
-  ADD CONSTRAINT FOREIGN KEY (id_kontroly) REFERENCES Kontrola (id_kontroly)
+  ADD FOREIGN KEY (id_kontroly) REFERENCES Kontrola (id_kontroly)
 /
 
 
 ALTER TABLE Vozen_Stanica
-  ADD CONSTRAINT FOREIGN KEY (id_vozna, id_stanice) REFERENCES Vozen (id_vozna, id_domovskej_stanice)
+  ADD FOREIGN KEY (id_vozna, id_stanice) REFERENCES Vozen (id_vozna, id_domovskej_stanice)
 /
 
 
 ALTER TABLE Vozen_Stanica
-  ADD CONSTRAINT FOREIGN KEY (id_stanice) REFERENCES Stanica (id_stanice)
+  ADD FOREIGN KEY (id_stanice) REFERENCES Stanica (id_stanice)
 /
 
 
 ALTER TABLE Zamestnanec
-  ADD CONSTRAINT je FOREIGN KEY (rod_cislo) REFERENCES Osoba (rod_cislo)
+  ADD FOREIGN KEY (rod_cislo) REFERENCES Osoba (rod_cislo)
 /
 
 
 ALTER TABLE Vyradeny_Vozen
-  ADD CONSTRAINT FOREIGN KEY (id_vozna, id_stanice) REFERENCES Vozen (id_vozna, id_domovskej_stanice)
+  ADD FOREIGN KEY (id_vozna, id_stanice) REFERENCES Vozen (id_vozna, id_domovskej_stanice)
 /
 
 
 ALTER TABLE Oprava
-  ADD CONSTRAINT FOREIGN KEY (id_kontroly) REFERENCES Kontrola (id_kontroly)
+  ADD FOREIGN KEY (id_kontroly) REFERENCES Kontrola (id_kontroly)
 /
 
 
 ALTER TABLE Spolocnost
-  ADD CONSTRAINT FOREIGN KEY (id_typu_spolocnosti) REFERENCES Typ_Spolocnosti (id_typu_spolocnosti)
+  ADD FOREIGN KEY (id_typu_spolocnosti) REFERENCES Typ_Spolocnosti (id_typu_spolocnosti)
 /
 
 
 ALTER TABLE Kontrola
-  ADD CONSTRAINT FOREIGN KEY (id_typu_kontroly) REFERENCES Typ_Kontroly (id_typu_kontroly)
+  ADD FOREIGN KEY (id_typu_kontroly) REFERENCES Typ_Kontroly (id_typu_kontroly)
 /
 
 
 ALTER TABLE Oprava
-  ADD CONSTRAINT FOREIGN KEY (id_typu_opravy) REFERENCES Typ_Opravy (id_typu_opravy)
+  ADD FOREIGN KEY (id_typu_opravy) REFERENCES Typ_Opravy (id_typu_opravy)
 /
 
 
 ALTER TABLE Suciastka
-  ADD CONSTRAINT FOREIGN KEY (id_typu_suciastky) REFERENCES Typ_Suciastky (id_typu_suciastky)
+  ADD FOREIGN KEY (id_typu_suciastky) REFERENCES Typ_Suciastky (id_typu_suciastky)
 /
 
 
 ALTER TABLE Vozen
-  ADD CONSTRAINT FOREIGN KEY (id_typu_vozna, cena) REFERENCES Typ_Vozna (id_typu_vozna, cena)
+  ADD FOREIGN KEY (id_typu_vozna, cena) REFERENCES Typ_Vozna (id_typu_vozna, cena)
 /
 
 
 ALTER TABLE Vozen
-  ADD CONSTRAINT FOREIGN KEY (id_vlastnika) REFERENCES Spolocnost (id_spolocnosti)
+  ADD FOREIGN KEY (id_vlastnika) REFERENCES Spolocnost (id_spolocnosti)
 /
 
 
 ALTER TABLE Suciastka
-  ADD CONSTRAINT FOREIGN KEY (id_dodavatela) REFERENCES Spolocnost (id_spolocnosti)
+  ADD FOREIGN KEY (id_dodavatela) REFERENCES Spolocnost (id_spolocnosti)
 /
 
 
 ALTER TABLE Vozen
-  ADD CONSTRAINT FOREIGN KEY (id_vyrobcu) REFERENCES Spolocnost (id_spolocnosti)
+  ADD FOREIGN KEY (id_vyrobcu) REFERENCES Spolocnost (id_spolocnosti)
 /
 
 
 ALTER TABLE Kontrola
-  ADD CONSTRAINT FOREIGN KEY (id_vozna, id_stanice) REFERENCES Vozen (id_vozna, id_domovskej_stanice)
+  ADD FOREIGN KEY (id_vozna, id_stanice) REFERENCES Vozen (id_vozna, id_domovskej_stanice)
 /
 
 
 ALTER TABLE Zamestnanec
-  ADD CONSTRAINT FOREIGN KEY (id_spolocnosti) REFERENCES Spolocnost (id_spolocnosti)
+  ADD FOREIGN KEY (id_spolocnosti) REFERENCES Spolocnost (id_spolocnosti)
 /
 
 
 ALTER TABLE Oprava_Suciastka
-  ADD CONSTRAINT FOREIGN KEY (id_zamestnanca) REFERENCES Zamestnanec (id_zamestnanca)
+  ADD FOREIGN KEY (id_zamestnanca) REFERENCES Zamestnanec (id_zamestnanca)
 /
 
 
 ALTER TABLE Oprava_Suciastka
-  ADD CONSTRAINT FOREIGN KEY (id_suciastky) REFERENCES Suciastka (id_suciastky)
+  ADD FOREIGN KEY (id_suciastky) REFERENCES Suciastka (id_suciastky)
 /
 
 
 ALTER TABLE Vozen
-  ADD CONSTRAINT FOREIGN KEY (id_domovskej_stanice) REFERENCES Stanica (id_stanice)
+  ADD FOREIGN KEY (id_domovskej_stanice) REFERENCES Stanica (id_stanice)
 /
 
 
