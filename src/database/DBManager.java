@@ -50,7 +50,7 @@ public class DBManager {
             int response = ps.executeUpdate();
 
             // pokial vrati ine ako 0, insert sa vykonal
-            if(response != 0) {
+            if (response != 0) {
                 return true;
             }
 
@@ -63,7 +63,7 @@ public class DBManager {
 
     public boolean insertZamestnanec(Zamestnanec zam, Osoba osoba) {
 
-        if(osoba != null) {
+        if (osoba != null) {
             insertOsoba(osoba);
         }
 
@@ -72,14 +72,14 @@ public class DBManager {
 
         try {
             ps = conn.prepareStatement(query);
-            ps.setString(1, (osoba!=null) ? osoba.getRodCislo() : null);
+            ps.setString(1, (osoba != null) ? osoba.getRodCislo() : null);
 //            ps.setInt(2, (spol!=null) ? spol.getIdSpolocnosti() : null);
             ps.setDate(3, new Date(0));
             ps.setDate(4, new Date(0));
 
             int response = ps.executeUpdate();
 
-            if(response != 0) {
+            if (response != 0) {
                 return true;
             }
 

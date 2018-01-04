@@ -14,6 +14,5 @@ public class App {
         os.setPriezvisko("Priezvisko");
 
         manager.insertOsoba(os);
-
     }
 }

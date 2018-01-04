@@ -8,18 +8,18 @@ Database: Oracle 12c
 
 -- Create user data types section -------------------------------------------------
 
-CREATE OR REPLACE TYPE T_REC_HISTORIA_CENY
+CREATE OR REPLACE TYPE T_HISTORIA_CENY
 AS OBJECT (
   datum_od DATE,
   datum_do DATE,
   cena     NUMBER,
-ORDER MEMBER FUNCTION tried_cenu (porovnat T_REC_HISTORIA_CENY)
+ORDER MEMBER FUNCTION tried_cenu (porovnat T_HISTORIA_CENY)
   RETURN NUMBER
 )
 /
-CREATE OR REPLACE TYPE BODY T_REC_HISTORIA_CENY
+CREATE OR REPLACE TYPE BODY T_HISTORIA_CENY
 IS
-  ORDER MEMBER FUNCTION tried_cenu (porovnat T_REC_HISTORIA_CENY)
+  ORDER MEMBER FUNCTION tried_cenu (porovnat T_HISTORIA_CENY)
     RETURN NUMBER IS
     BEGIN
       IF porovnat.cena > self.cena
@@ -30,10 +30,6 @@ IS
       END IF;
     END;
 END;
-/
-
-CREATE OR REPLACE TYPE T_HISTORIA_CENY
-AS TABLE OF T_REC_HISTORIA_CENY
 /
 
 -- Create tables section -------------------------------------------------
@@ -259,7 +255,7 @@ ALTER TABLE Suciastka
 CREATE TABLE Typ_Suciastky (
   id_typu_suciastky INTEGER         NOT NULL,
   typ_suciastky     VARCHAR2(30),
-  historia_ceny     T_REC_HISTORIA_CENY NOT NULL
+  historia_ceny     T_HISTORIA_CENY NOT NULL
 )
 /
 
@@ -315,7 +311,7 @@ CREATE TABLE Vozen_Stanica (
 -- Add keys for table Vozen_Stanica
 
 ALTER TABLE Vozen_Stanica
-  ADD CONSTRAINT Key18 PRIMARY KEY (id_vozna, id_stanice, v_stanici_od, id_stanice)
+  ADD CONSTRAINT Key18 PRIMARY KEY (id_vozna, id_stanice, v_stanici_od)
 /
 
 -- Create indexes for tables section -------------------------------------------------
@@ -369,106 +365,127 @@ CREATE INDEX IX_Relationship3
 
 ALTER TABLE Oprava_Suciastka
   ADD FOREIGN KEY (id_opravy) REFERENCES Oprava (id_opravy)
+ON DELETE CASCADE
 /
 
 
 ALTER TABLE Kontrola_Zamestnanec
   ADD FOREIGN KEY (id_zamestnanca) REFERENCES Zamestnanec (id_zamestnanca)
+ON DELETE CASCADE
 /
 
 
 ALTER TABLE Kontrola_Zamestnanec
   ADD FOREIGN KEY (id_kontroly) REFERENCES Kontrola (id_kontroly)
+ON DELETE CASCADE
 /
 
 
 ALTER TABLE Vozen_Stanica
   ADD FOREIGN KEY (id_vozna, id_stanice) REFERENCES Vozen (id_vozna, id_domovskej_stanice)
+ON DELETE CASCADE
 /
 
 
 ALTER TABLE Vozen_Stanica
   ADD FOREIGN KEY (id_stanice) REFERENCES Stanica (id_stanice)
+ON DELETE CASCADE
 /
 
 
 ALTER TABLE Zamestnanec
   ADD FOREIGN KEY (rod_cislo) REFERENCES Osoba (rod_cislo)
+ON DELETE SET NULL
 /
 
 
 ALTER TABLE Vyradeny_Vozen
   ADD FOREIGN KEY (id_vozna, id_stanice) REFERENCES Vozen (id_vozna, id_domovskej_stanice)
+ON DELETE SET NULL
 /
 
 
 ALTER TABLE Oprava
   ADD FOREIGN KEY (id_kontroly) REFERENCES Kontrola (id_kontroly)
+ON DELETE SET NULL
 /
 
 
 ALTER TABLE Spolocnost
   ADD FOREIGN KEY (id_typu_spolocnosti) REFERENCES Typ_Spolocnosti (id_typu_spolocnosti)
+ON DELETE SET NULL
 /
 
 
 ALTER TABLE Kontrola
   ADD FOREIGN KEY (id_typu_kontroly) REFERENCES Typ_Kontroly (id_typu_kontroly)
+ON DELETE SET NULL
 /
 
 
 ALTER TABLE Oprava
   ADD FOREIGN KEY (id_typu_opravy) REFERENCES Typ_Opravy (id_typu_opravy)
+ON DELETE SET NULL
 /
 
 
 ALTER TABLE Suciastka
   ADD FOREIGN KEY (id_typu_suciastky) REFERENCES Typ_Suciastky (id_typu_suciastky)
+ON DELETE SET NULL
 /
 
 
 ALTER TABLE Vozen
   ADD FOREIGN KEY (id_typu_vozna, cena) REFERENCES Typ_Vozna (id_typu_vozna, cena)
+ON DELETE SET NULL
 /
 
 
 ALTER TABLE Vozen
   ADD FOREIGN KEY (id_vlastnika) REFERENCES Spolocnost (id_spolocnosti)
+ON DELETE SET NULL
 /
 
 
 ALTER TABLE Suciastka
   ADD FOREIGN KEY (id_dodavatela) REFERENCES Spolocnost (id_spolocnosti)
+ON DELETE SET NULL
 /
 
 
 ALTER TABLE Vozen
   ADD FOREIGN KEY (id_vyrobcu) REFERENCES Spolocnost (id_spolocnosti)
+ON DELETE SET NULL
 /
 
 
 ALTER TABLE Kontrola
   ADD FOREIGN KEY (id_vozna, id_stanice) REFERENCES Vozen (id_vozna, id_domovskej_stanice)
+ON DELETE CASCADE
 /
 
 
 ALTER TABLE Zamestnanec
   ADD FOREIGN KEY (id_spolocnosti) REFERENCES Spolocnost (id_spolocnosti)
+ON DELETE CASCADE
 /
 
 
 ALTER TABLE Oprava_Suciastka
   ADD FOREIGN KEY (id_zamestnanca) REFERENCES Zamestnanec (id_zamestnanca)
+ON DELETE CASCADE
 /
 
 
 ALTER TABLE Oprava_Suciastka
   ADD FOREIGN KEY (id_suciastky) REFERENCES Suciastka (id_suciastky)
+ON DELETE CASCADE
 /
 
 
 ALTER TABLE Vozen
   ADD FOREIGN KEY (id_domovskej_stanice) REFERENCES Stanica (id_stanice)
+ON DELETE SET NULL
 /
 
 
