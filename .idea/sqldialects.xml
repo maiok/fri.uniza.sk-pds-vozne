@@ -17,6 +17,9 @@
     <file url="file://$PROJECT_DIR$/src/queries/data/11_VOZEN_STANICA.sql" dialect="Oracle" />
     <file url="file://$PROJECT_DIR$/src/queries/data/12_TYP_OPRAVY.sql" dialect="Oracle" />
     <file url="file://$PROJECT_DIR$/src/queries/data/13_OPRAVA.sql" dialect="Oracle" />
+    <file url="file://$PROJECT_DIR$/src/queries/data/14_TYP_SUCIASTKY.sql" dialect="Oracle" />
+    <file url="file://$PROJECT_DIR$/src/queries/data/15_SUCIASTKA.sql" dialect="Oracle" />
+    <file url="file://$PROJECT_DIR$/src/queries/data/16_OPRAVA_SUCIASTKA.sql" dialect="Oracle" />
     <file url="file://$PROJECT_DIR$/src/queries/drop-tabuliek.sql" dialect="Oracle" />
     <file url="file://$PROJECT_DIR$/src/queries/trigre.sql" dialect="Oracle" />
   </component>
