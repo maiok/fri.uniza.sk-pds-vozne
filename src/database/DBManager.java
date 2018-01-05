@@ -3,6 +3,9 @@ package database;
 import constants.AppConstants;
 import entities.*;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -180,6 +183,25 @@ public class DBManager {
             e.printStackTrace();
         }
         return false;
+    }
+
+    public void generujBlobyTypVozna() {
+
+        query = "update typ_vozna set foto_vozna = ? where id_typu_vozna = ?";
+
+        try {
+            for (int i = 1; i <= 11; i++) {
+                PreparedStatement pstmt = conn.prepareStatement(query);
+                File blob = new File(System.getProperty("user.dir") + "/bloby/blob_" + i + ".jpg");
+                FileInputStream in = new FileInputStream(blob);
+                pstmt.setBinaryStream(1, in, (int) blob.length());
+                pstmt.setInt(2, i);
+                pstmt.executeUpdate();
+                pstmt.close();
+            }
+        } catch (SQLException | FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
 }
