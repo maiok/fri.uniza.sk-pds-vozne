@@ -1,11 +1,13 @@
 package entities;
 
+import java.sql.Date;
+
 public class Osoba {
 
     private String rodCislo;
     private String meno;
     private String priezvisko;
-    private java.sql.Date datNarodenia;
+    private Date datNarodenia;
     private String adresaOsoby;
     private String kontaktOsoby;
 
