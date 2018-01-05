@@ -8,18 +8,18 @@ Database: Oracle 12c
 
 -- Create user data types section -------------------------------------------------
 
-CREATE OR REPLACE TYPE T_HISTORIA_CENY
+CREATE OR REPLACE TYPE T_REC_HISTORIA_CENY
 AS OBJECT (
   datum_od DATE,
   datum_do DATE,
   cena     NUMBER,
-ORDER MEMBER FUNCTION tried_cenu (porovnat T_HISTORIA_CENY)
+ORDER MEMBER FUNCTION tried_cenu (porovnat T_REC_HISTORIA_CENY)
   RETURN NUMBER
 )
 /
-CREATE OR REPLACE TYPE BODY T_HISTORIA_CENY
+CREATE OR REPLACE TYPE BODY T_REC_HISTORIA_CENY
 IS
-  ORDER MEMBER FUNCTION tried_cenu (porovnat T_HISTORIA_CENY)
+  ORDER MEMBER FUNCTION tried_cenu (porovnat T_REC_HISTORIA_CENY)
     RETURN NUMBER IS
     BEGIN
       IF porovnat.cena > self.cena
@@ -32,12 +32,16 @@ IS
 END;
 /
 
+CREATE OR REPLACE TYPE T_HISTORIA_CENY
+AS TABLE OF T_REC_HISTORIA_CENY;
+/
+
 -- Create tables section -------------------------------------------------
 
 -- Table Osoba
 
 CREATE TABLE Osoba (
-  rod_cislo     CHAR(11) NOT NULL,
+  rod_cislo     CHAR(10) NOT NULL,
   meno          VARCHAR2(30),
   priezvisko    VARCHAR2(30),
   dat_narodenia DATE,
@@ -61,7 +65,7 @@ COMMENT ON COLUMN Osoba.rod_cislo IS 'd'
 
 CREATE TABLE Zamestnanec (
   id_zamestnanca    INTEGER NOT NULL,
-  rod_cislo         CHAR(11),
+  rod_cislo         CHAR(10),
   id_spolocnosti    INTEGER,
   datum_prijatia    DATE    NOT NULL,
   datum_prepustenia DATE
