@@ -4,8 +4,9 @@ import java.sql.Date;
 
 public class Zamestnanec {
 
+    private int id;
     private String rodCislo;
-    private int idSpolocnosti;
+    private Integer idSpolocnosti; // Integer kvoli prepareStatement
     private Date datumPrijatia;
     private Date datumPrepustenia;
 
@@ -29,11 +30,11 @@ public class Zamestnanec {
         this.datumPrepustenia = datumPrepustenia;
     }
 
-    public int getIdSpolocnosti() {
+    public Integer getIdSpolocnosti() {
         return idSpolocnosti;
     }
 
-    public void setIdSpolocnosti(int idSpolocnosti) {
+    public void setIdSpolocnosti(Integer idSpolocnosti) {
         this.idSpolocnosti = idSpolocnosti;
     }
 

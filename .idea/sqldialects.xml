@@ -2,7 +2,8 @@
 <project version="4">
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/src/database/DBManager.java" dialect="Oracle" />
-    <file url="file://$PROJECT_DIR$/src/queries/DDL_Vozne.sql" dialect="Oracle" />
+    <file url="file://$PROJECT_DIR$/src/queries/DDL_Vozne_v1.sql" dialect="Oracle" />
+    <file url="file://$PROJECT_DIR$/src/queries/DDL_Vozne_v2.sql" dialect="Oracle" />
     <file url="file://$PROJECT_DIR$/src/queries/drop-tabuliek.sql" dialect="Oracle" />
     <file url="file://$PROJECT_DIR$/src/queries/osoba-data.sql" dialect="Oracle" />
     <file url="file://$PROJECT_DIR$/src/queries/trigre.sql" dialect="Oracle" />

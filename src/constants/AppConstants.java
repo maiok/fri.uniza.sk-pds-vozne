@@ -6,5 +6,5 @@ public final class AppConstants {
     public static final String DB_USER = "system";
     public static final String DB_PASSW = "Skola253";
 
-    public static final int DB_POC_OSOB = 10000;
+    public static final int DB_POC_ZAM = 800;
 }

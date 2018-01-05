@@ -11,10 +11,10 @@ public class DBDataGenerator {
         this.manager = manager;
     }
 
-    public void generujOsoby() {
+    public void generujZamestnancov() {
 
         int i = 0;
-        for (i = 0; i < AppConstants.DB_POC_OSOB; i++) {
+        for (i = 0; i < AppConstants.DB_POC_ZAM; i++) {
             Osoba osoba = new Osoba();
 
             //TODO tu bude generator objektu Osoba
