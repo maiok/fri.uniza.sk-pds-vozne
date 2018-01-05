@@ -7,6 +7,7 @@ public class VyradenyVozen {
     private int id;
     private Integer idVozna;
     private Date datumVyradenia;
+    private String popis;
 
     public VyradenyVozen() {
     }
@@ -33,5 +34,13 @@ public class VyradenyVozen {
 
     public void setDatumVyradenia(Date datumVyradenia) {
         this.datumVyradenia = datumVyradenia;
+    }
+
+    public String getPopis() {
+        return popis;
+    }
+
+    public void setPopis(String popis) {
+        this.popis = popis;
     }
 }

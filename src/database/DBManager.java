@@ -1,9 +1,7 @@
 package database;
 
 import constants.AppConstants;
-import entities.Osoba;
-import entities.Spolocnost;
-import entities.Zamestnanec;
+import entities.*;
 
 import java.sql.*;
 import java.text.SimpleDateFormat;
@@ -36,7 +34,7 @@ public class DBManager {
 
     public boolean insertOsoba(Osoba osoba) {
 
-        query = "INSERT INTO Osoba (rod_cislo, meno, priezvisko, dat_narodenia, adresa_osoby," +
+        query = "insert into osoba (rod_cislo, meno, priezvisko, dat_narodenia, adresa_osoby," +
                 "kontakt_osoby) values(?,?,?,?,?,?)";
         try {
             ps = conn.prepareStatement(query);
@@ -60,7 +58,7 @@ public class DBManager {
 
     public boolean insertZamestnanec(Zamestnanec zam) {
 
-        query = "insert into Zamestnanec (rod_cislo, id_spolocnosti, datum_prijatia, datum_prepustenia) " +
+        query = "insert into zamestnanec (rod_cislo, id_spolocnosti, datum_prijatia, datum_prepustenia) " +
                 "values(?,?,?,?)";
         try {
             ps = conn.prepareStatement(query);
@@ -70,6 +68,109 @@ public class DBManager {
             ps.setObject(2, zam.getIdSpolocnosti(), Types.INTEGER);
             ps.setDate(3, zam.getDatumPrijatia());
             ps.setDate(4, zam.getDatumPrepustenia());
+
+            int response = ps.executeUpdate();
+            if (response != 0) {
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean insertSpolocnost(Spolocnost spolocnost) {
+
+        query = "insert into spolocnost (id_typu_spolocnosti, nazov_spolocnosti, adresa_spolocnosti, kontakt_spolocnosti) " +
+                "values(?,?,?,?)";
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setObject(1, spolocnost.getIdTypu(), Types.INTEGER);
+            ps.setString(2, spolocnost.getNazov());
+            ps.setString(3, spolocnost.getAdresa());
+            ps.setString(4, spolocnost.getKontakt());
+
+            int response = ps.executeUpdate();
+            if (response != 0) {
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean insertVozen(Vozen vozen) {
+
+        query = "insert into vozen (id_typu_vozna, id_vlastnika, id_vyrobcu, id_domovskej_stanice, datum_nadobudnutia) " +
+                "values(?,?,?,?,?)";
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setObject(1, vozen.getIdTypuVozna(), Types.INTEGER);
+            ps.setObject(2, vozen.getIdVlastnika(), Types.INTEGER);
+            ps.setObject(3, vozen.getIdVyrobcu(), Types.INTEGER);
+            ps.setObject(4, vozen.getIdDomovskejStanice(), Types.INTEGER);
+            ps.setDate(5, vozen.getDatumNadobudnutia());
+
+            int response = ps.executeUpdate();
+            if (response != 0) {
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean insertVyradenyVozen(VyradenyVozen vyradenyVozen) {
+
+        query = "insert into vyradeny_vozen (id_vozna, datum_vyradenia, popis_vyradenia) " +
+                "values(?,?,?)";
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setObject(1, vyradenyVozen.getIdVozna(), Types.INTEGER);
+            ps.setDate(2, vyradenyVozen.getDatumVyradenia());
+            ps.setString(3, vyradenyVozen.getPopis());
+
+            int response = ps.executeUpdate();
+            if (response != 0) {
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean insertOprava(Oprava oprava) {
+
+        query = "insert into oprava (id_kontroly, id_typu_opravy, popis_opravy) " +
+                "values(?,?,?)";
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setObject(1, oprava.getIdKontroly(), Types.INTEGER);
+            ps.setObject(2, oprava.getIdTypu(), Types.INTEGER);
+            ps.setString(3, oprava.getPopis());
+
+            int response = ps.executeUpdate();
+            if (response != 0) {
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean insertSuciastka(Suciastka suciastka) {
+
+        query = "insert into suciastka (id_typu_suciastky, id_dodavatela, cena_suciastky) " +
+                "values(?,?,?)";
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setObject(1, suciastka.getIdTypu(), Types.INTEGER);
+            ps.setObject(2, suciastka.getIdDodavatela(), Types.INTEGER);
+            ps.setDouble(3, suciastka.getCena());
 
             int response = ps.executeUpdate();
             if (response != 0) {
