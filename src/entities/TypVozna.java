@@ -1,12 +1,12 @@
 package entities;
 
-import java.sql.Blob;
+import java.io.File;
 
 public class TypVozna {
 
     private int id;
     private double cena;
-    private Blob foto;
+    private File foto;
     private String typ;
     private double odpis;
 
@@ -29,11 +29,11 @@ public class TypVozna {
         this.cena = cena;
     }
 
-    public Blob getFoto() {
+    public File getFoto() {
         return foto;
     }
 
-    public void setFoto(Blob foto) {
+    public void setFoto(File foto) {
         this.foto = foto;
     }
 

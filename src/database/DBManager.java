@@ -204,4 +204,109 @@ public class DBManager {
         }
     }
 
+    public void generujHistoriuTypSuciastky() {
+
+        query = "update typ_suciastky set historia_ceny = ? where id_typu_suciastky = ?";
+
+        try {
+            for (int i = 1; i <= 50; i++) {
+                PreparedStatement pstmt = conn.prepareStatement(query);
+
+                pstmt.setInt(2, i);
+
+                pstmt.executeUpdate();
+                pstmt.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public ResultSet selectTypyVoznov() {
+
+        query = "SELECT * FROM TYP_VOZNA";
+        try {
+            stmt = conn.createStatement();
+            return stmt.executeQuery(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public ResultSet selectDodavatelia() {
+
+        query = "SELECT * FROM SPOLOCNOST JOIN TYP_SPOLOCNOSTI USING(id_typu_spolocnosti) WHERE TYP_SPOLOCNOSTI = \'Dodavatel\'";
+        try {
+            stmt = conn.createStatement();
+            return stmt.executeQuery(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public ResultSet selectSpolocnosti() {
+
+        query = "SELECT * FROM SPOLOCNOST";
+        try {
+            stmt = conn.createStatement();
+            return stmt.executeQuery(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public ResultSet selectSpolocnotiPodlaNazvu(String nazov) {
+
+        query = "SELECT * FROM spolocnost WHERE nazov_spolocnosti = ?";
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setString(1, nazov);
+            return ps.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public ResultSet selectTypVoznaPodlaTypu(String typ) {
+
+        query = "SELECT * FROM TYP_VOZNA WHERE TYP_VOZNA = ?";
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setString(1, typ);
+            return ps.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public ResultSet selectStanice() {
+
+        query = "SELECT * FROM STANICA";
+        try {
+            stmt = conn.createStatement();
+            return stmt.executeQuery(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public ResultSet selectStanicePodlaNazvu(String nazov) {
+
+        query = "SELECT * FROM stanica WHERE nazov_stanice = ?";
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setString(1, nazov);
+            return ps.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }
